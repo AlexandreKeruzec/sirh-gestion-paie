@@ -1,5 +1,7 @@
 package dev.paie.config;
 
+import java.math.BigDecimal;
+
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
@@ -10,6 +12,8 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import dev.paie.entite.Avantage;
 
 @Configuration
 @EnableTransactionManagement
@@ -41,6 +45,15 @@ public class JpaConfig {
 		factory.afterPropertiesSet();
 
 		return factory.getObject();
+	}
+
+	@Bean
+	public Avantage avantage() {
+		Avantage avantage = new Avantage();
+		avantage.setCode("Code11");
+		avantage.setNom("Avantage11");
+		avantage.setMontant(new BigDecimal(100));
+		return avantage;
 	}
 
 }
