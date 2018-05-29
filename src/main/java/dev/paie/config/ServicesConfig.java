@@ -12,7 +12,7 @@ import dev.paie.entite.BulletinSalaire;
 @Configuration
 @ComponentScan("dev.paie.service, dev.paie.util")
 @ImportResource("classpath:jdd-config.xml")
-@Import({ JpaConfig.class, DataSourceMySQLConfig.class })
+@Import({ JpaConfig.class, HerokuDBConfig.class })
 
 @EnableJpaRepositories("dev.paie.repository") // Configuration à ajouter.
 public class ServicesConfig {

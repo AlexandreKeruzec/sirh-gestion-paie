@@ -12,11 +12,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import dev.paie.config.DataSourceMySQLConfig;
+import dev.paie.config.HerokuDBConfig;
 import dev.paie.config.ServicesConfig;
 import dev.paie.entite.Grade;
 
-@ContextConfiguration(classes = { DataSourceMySQLConfig.class, ServicesConfig.class })
+@ContextConfiguration(classes = { HerokuDBConfig.class, ServicesConfig.class })
 @Repository
 @RunWith(SpringRunner.class)
 public class GradeServiceJdbcTemplateTest {

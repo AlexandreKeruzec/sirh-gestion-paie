@@ -12,12 +12,12 @@ import org.springframework.stereotype.Repository;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import dev.paie.config.DataSourceMySQLConfig;
+import dev.paie.config.HerokuDBConfig;
 import dev.paie.config.JpaConfig;
 import dev.paie.config.ServicesConfig;
 import dev.paie.entite.Cotisation;
 
-@ContextConfiguration(classes = { DataSourceMySQLConfig.class, JpaConfig.class, ServicesConfig.class })
+@ContextConfiguration(classes = { HerokuDBConfig.class, JpaConfig.class, ServicesConfig.class })
 @Repository
 @RunWith(SpringRunner.class)
 public class CotisationServiceJpaTest {
