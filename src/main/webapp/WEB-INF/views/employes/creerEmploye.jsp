@@ -28,10 +28,10 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="/paie/mvc/employes/lister">Employés
+				<li class="nav-item mr-2"><a href = "<c:url value = "/mvc/employes/lister"/>">Employés</a>
 						<span class="sr-only">(current)</span>
-				</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Bulletins</a>
+				</li>
+				<li class="nav-item mr-2"><a href = "<c:url value = "/mvc/bulletins/lister"/>">Bulletins</a>
 				</li>
 			</ul>
 		</div>
