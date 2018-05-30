@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.paie.entite.Cotisation;
 import dev.paie.repository.CotisationRepository;
+import dev.paie.web.controller.exception.CodeNotFoundException;
 
 @RestController
 public class CotisationController {
@@ -25,13 +26,15 @@ public class CotisationController {
 	}
 
 	@RequestMapping(value = "/api/cotisations/{code}", method = RequestMethod.GET)
-	// @ResponseBody // plus besoin de mettre cette annotation
 	public ResponseEntity<Cotisation> findClient(@PathVariable String code) {
+		// return cor.findByCode(code).map(cot -> ResponseEntity.ok(cot))
+		// .orElseThrow(() -> new CodeNotFoundException(code));
 		Cotisation cot = cor.findByCode(code);
 		if (cot != null) {
 			return ResponseEntity.ok(cot);
+		} else {
+			throw new CodeNotFoundException(code);
 		}
-		return ResponseEntity.notFound().build();
 
 	}
 
@@ -48,11 +51,7 @@ public class CotisationController {
 
 	@RequestMapping(value = "/api/cotisations/{code}", method = RequestMethod.DELETE)
 	public void deleteCotisation(@PathVariable String code) {
-		try {
-			cor.delete(cor.findByCode(code));
-		} catch (IllegalArgumentException e) {
-			// TODO: handle exception
-		}
+		cor.delete(cor.findByCode(code));
 	}
 
 }

@@ -6,6 +6,7 @@ import dev.paie.entite.Cotisation;
 
 public interface CotisationRepository extends JpaRepository<Cotisation, Integer> {
 
-	public Cotisation findByCode(String code);
+	// Optional<Cotisation> findByCode(String code);
+	Cotisation findByCode(String code);
 
 }
