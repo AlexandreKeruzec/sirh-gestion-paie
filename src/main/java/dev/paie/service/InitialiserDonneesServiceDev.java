@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,12 +19,17 @@ import dev.paie.entite.Entreprise;
 import dev.paie.entite.Grade;
 import dev.paie.entite.Periode;
 import dev.paie.entite.ProfilRemuneration;
+import dev.paie.entite.Utilisateur;
+import dev.paie.entite.Utilisateur.ROLES;
 
 @Service
 public class InitialiserDonneesServiceDev implements InitialiserDonneesService {
 
 	@PersistenceContext
 	private EntityManager em;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private CotisationService cotisationService;
@@ -59,6 +65,20 @@ public class InitialiserDonneesServiceDev implements InitialiserDonneesService {
 		for (ProfilRemuneration profil : profilList.values()) {
 			em.persist(profil);
 		}
+
+		Utilisateur admin = new Utilisateur();
+		admin.setNomUtilisateur("admin");
+		admin.setMotDePasse(passwordEncoder.encode("admin"));
+		admin.setEstActif(true);
+		admin.setRole(ROLES.ROLE_ADMINISTRATEUR);
+		em.persist(admin);
+
+		Utilisateur user1 = new Utilisateur();
+		user1.setNomUtilisateur("user");
+		user1.setMotDePasse(passwordEncoder.encode("123"));
+		user1.setEstActif(true);
+		user1.setRole(ROLES.ROLE_UTILISATEUR);
+		em.persist(user1);
 
 	}
 
